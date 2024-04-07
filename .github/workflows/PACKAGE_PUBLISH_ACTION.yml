@@ -74,5 +74,5 @@ jobs:
                 "pullRequestLink": ${{ steps.check_pr_merged.outputs.pullRequestLink }},
                 "pullRequestTitle": ${{steps.check_pr_merged.outputs.pullRequestTitle }},
                 "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }},
-                "version": ${{ steps.utils.outputs.version }}
+                "version": "${{ steps.utils.outputs.version }}"
               }'
