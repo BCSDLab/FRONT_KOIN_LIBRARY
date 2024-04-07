@@ -1,12 +1,9 @@
-import { AxiosError } from 'axios';
-
-export interface KoinError {
-  type: 'KOIN_ERROR';
-  status: number;
-  code: number;
-  message: string;
+function add(a:number, b:number): number {
+  return a + b;
 }
 
-export interface CustomAxiosError extends AxiosError {
-  type: 'AXIOS_ERROR';
+function divide(a:number,b:number): number {
+  return a/b;
 }
+
+export { add, divide }; 
