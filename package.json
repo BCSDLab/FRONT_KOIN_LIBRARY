@@ -1,6 +1,6 @@
 {
   "name": "@bcsdlab/koin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "description": "bcsdlab 코인 유틸 모음입니다.",
   "type": "module",
@@ -17,7 +17,6 @@
     "utils",
     "bcsdlab"
   ],
-  
   "bugs": {
     "url": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY/issues"
   },
