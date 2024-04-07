@@ -1,9 +1,10 @@
 {
   "name": "@bcsdlab/koin",
   "version": "0.0.4",
+  "main": "dist/index.js",
   "description": "bcsdlab 코인 유틸 모음입니다.",
-  "requires": true,
-  "main": "dist/index.ts",
+  "type": "module",
+  "license": "MIT",
   "scripts": {
     "build": "tsc"
   },
@@ -16,9 +17,7 @@
     "utils",
     "bcsdlab"
   ],
-  "type": "module",
-  "author": "",
-  "license": "MIT",
+  
   "bugs": {
     "url": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY/issues"
   },
@@ -42,9 +41,11 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "dependencies": {
+    "axios": "^1.6.8"
+  },
   "devDependencies": {
-    "@types/node": "^20.12.5",
-    "axios": "^1.6.8",
+    "@types/node": "^20.10.6",
     "typescript": "^5.4.4"
   }
 }
