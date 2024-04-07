@@ -2,6 +2,8 @@
   "name": "@bcsdlab/koin",
   "version": "0.0.1",
   "description": "bcsdlab 코인 유틸 모음입니다.",
+  "lockfileVersion": 3,
+  "requires": true,
   "main": "dist/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +17,7 @@
     "utils",
     "bcsdlab"
   ],
+  "type": "module",
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -22,6 +25,7 @@
   },
   "homepage": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY#readme",
   "dependencies": {
+    "axios": "^1.6.8",
     "typescript": "^5.4.4"
   },
   "browserslist": {
@@ -35,5 +39,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
   }
 }
