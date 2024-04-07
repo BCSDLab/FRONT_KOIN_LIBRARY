@@ -1,1 +1,1 @@
-export * from './koin-error';
+export * from "./koin-error";

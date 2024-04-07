@@ -1,8 +1,14 @@
-export function add(a:number, b:number): number {
-  return a + b;
+export interface KoinError {
+  type: "KOIN_ERROR";
+  status: number;
+  code: number;
+  message: string;
 }
 
-export function divide(a:number,b:number): number {
-  return a / b;
+export function isKoinError(error: unknown): error is KoinError {
+  try {
+    return (error as KoinError).type === "KOIN_ERROR";
+  } catch {
+    return false;
+  }
 }
-
