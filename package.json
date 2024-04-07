@@ -1,0 +1,39 @@
+{
+  "name": "@bcsdlab/koin",
+  "version": "0.0.1",
+  "description": "bcsdlab 코인 유틸 모음입니다.",
+  "main": "dist/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BCSDLab/FRONT_KOIN_LIBRARY.git"
+  },
+  "keywords": [
+    "koin",
+    "utils",
+    "bcsdlab"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY/issues"
+  },
+  "homepage": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY#readme",
+  "dependencies": {
+    "typescript": "^5.4.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
