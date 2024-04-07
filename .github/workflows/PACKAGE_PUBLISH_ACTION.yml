@@ -1,0 +1,67 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: package publish action
+
+on:
+  pull_request:
+    types: closed
+
+jobs:
+  check-pr-merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: set git user
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: setup git authentication
+        run: |
+          git remote set-url origin https://github.com/${{ github.repository }}.git
+
+      - name: install dependencies
+        run: npm install
+
+      - name: build tsc with clean
+        run: npm run build
+
+      - name: version patch    
+        run: npm version patch
+
+      - name: Check & Publish utils package
+        uses: JS-DevTools/npm-publish@v1
+        id: utils
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: "./package.json"
+
+      - name: Check pr merged
+        id: check_pr_merged
+        uses: actions/github-script@v7
+        with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            script: |
+              const pullRequestLink = context.payload.pull_request.html_url ?? context.payload.pull_request._links.html.href;
+              const pullRequestTitle = context.payload.pull_request.title;
+              const repositoryName = context.payload.pull_request.base.repo.name;
+              core.setOutput('pullRequestLink', JSON.stringify(pullRequestLink));
+              core.setOutput('pullRequestTitle', JSON.stringify(pullRequestTitle));
+              core.setOutput('repositoryName', JSON.stringify(repositoryName));
+
+      - name: Send Slack Trigger
+        run: |
+          curl -X POST https://api-slack.internal.bcsdlab.com/api/update-package/frontend \
+          -H 'Content-Type: application/json' \
+          -d '{
+                "pullRequestLink": ${{ steps.check_pr_merged.outputs.pullRequestLink }},
+                "pullRequestTitle": ${{steps.check_pr_merged.outputs.pullRequestTitle }},
+                "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }}
+              }'
