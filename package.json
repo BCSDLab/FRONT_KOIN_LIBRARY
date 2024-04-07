@@ -1,6 +1,6 @@
 {
   "name": "@bcsdlab/koin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "bcsdlab 코인 유틸 모음입니다.",
   "requires": true,
   "main": "dist/index.ts",
