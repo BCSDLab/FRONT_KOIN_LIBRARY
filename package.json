@@ -1,6 +1,6 @@
 {
   "name": "@bcsdlab/koin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "bcsdlab 코인 유틸 모음입니다.",
   "lockfileVersion": 3,
   "requires": true,
