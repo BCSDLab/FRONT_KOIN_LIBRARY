@@ -12,7 +12,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Checkout code
@@ -33,8 +33,18 @@ jobs:
       - name: build tsc with clean
         run: npm run build
 
+      - name: Commit build artifacts and changes
+        run: |
+          git add .
+          git commit -m "Prepare release" || true
+
       - name: version patch    
         run: npm version patch
+
+      - name: Push changes
+        run: git push origin HEAD:${{ github.ref }} && git push origin --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check & Publish utils package
         uses: JS-DevTools/npm-publish@v1
@@ -63,5 +73,6 @@ jobs:
           -d '{
                 "pullRequestLink": ${{ steps.check_pr_merged.outputs.pullRequestLink }},
                 "pullRequestTitle": ${{steps.check_pr_merged.outputs.pullRequestTitle }},
-                "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }}
+                "repositoryName": ${{steps.check_pr_merged.outputs.repositoryName }},
+                "version": ${{ steps.utils.outputs.version }}
               }'
