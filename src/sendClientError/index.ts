@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+/** 삐봇 서버에 에러가 발생했음을 알립니다 */
 export const sendClientError = (error: unknown) => {
   const url = window.location.href;
 
