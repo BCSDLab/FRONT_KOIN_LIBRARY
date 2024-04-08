@@ -1,1 +1,2 @@
-export * from "./koin-error";
+export * from "./koinError";
+export * from "./sendClientError";
