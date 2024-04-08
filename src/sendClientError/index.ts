@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-/** 삐봇 서버에 에러가 발생했음을 알립니다 */
+/** 삐봇 서버에 에러가 발생했음을 전달해 슬랙 채널로 전달합니다. */
 export const sendClientError = (error: unknown) => {
   const url = window.location.href;
 
