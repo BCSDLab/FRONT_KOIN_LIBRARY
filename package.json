@@ -1,12 +1,16 @@
 {
   "name": "@bcsdlab/koin",
   "version": "0.0.11",
-  "main": "dist/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "description": "bcsdlab 코인 유틸 모음입니다.",
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "yarn clean && yarn build:tsc && yarn build:js",
+    "build:tsc": "yarn tsc --emitDeclarationOnly",
+    "build:js": "node build.js",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
@@ -23,12 +27,17 @@
   "homepage": "https://github.com/BCSDLab/FRONT_KOIN_LIBRARY#readme",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     }
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "devDependencies": {
+    "esbuild": "^0.20.2",
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
